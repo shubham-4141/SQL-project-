@@ -59,20 +59,9 @@ CREATE TABLE Orders (
 );
 # 2. Data Import from CSV
  To import data from CSV files, use the COPY command in PostgreSQL.
+ 
 
-sql
-Copy
-COPY Books(Book_id, Title, Author, Genere, Published_Year, Price, Stock)
-FROM 'C:\Sqlproject\Books.csv' 
-DELIMITER ',' CSV HEADER;
 
--- COPY Customers(Customer_id, Name, Email, Phone, City, Country)
-   FROM 'C:\Sqlproject\Customers.csv' 
-   DELIMITER ',' CSV HEADER;
-
-COPY Orders(Order_id, Customer_id, Book_id, Order_Date, Quantity, Total_Amount)
-FROM 'C:\Sqlproject\Orders.csv' 
-DELIMITER ',' CSV HEADER;
 # 3. Simple Queries for Data Analysis
 -  Retrieve all books in the "Fiction" genre:
 -  Find books published after the year 1950:
