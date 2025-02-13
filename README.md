@@ -15,54 +15,21 @@ The goal of this project is to design and implement a relational database for a 
   - Orders: Contains details of orders placed by customers, with references to books and 
    customers.
 - Data Import: Data is imported from CSV files for books, customers, and orders.
-## SQL Scripts
-# 1. Table Creation
-- Books Table
-sql
-Copy
-DROP TABLE IF EXISTS Books;
+# SQL Scripts
+## 1. Table Creation
+The CREATE TABLE statement is used to define a new table within a database. This table is structured to hold data in columns, each with a specified data type, constraints, and other properties. Below is a detailed breakdown of the CREATE TABLE statement for the tables defined in your project:
 
-CREATE TABLE Books (
-    Book_id serial PRIMARY KEY,
-    Title varchar(100),
-    Author varchar(100),
-    Genere varchar(100),
-    Published_Year int,
-    Price numeric(10,2),
-    Stock int
-);
-- Customers Table
-sql
-Copy
-DROP TABLE IF EXISTS Customers;
 
-CREATE TABLE Customers (
-    Customer_id int PRIMARY KEY,
-    Name varchar(100),
-    Email varchar(100),
-    Phone varchar(15),
-    City varchar(50),
-    Country varchar(100)
-);
-- Orders Table
-sql
-Copy
-DROP TABLE IF EXISTS Orders;
 
-CREATE TABLE Orders (
-    Order_id int PRIMARY KEY,
-    Customer_id int REFERENCES Customers(Customer_id),
-    Book_id int REFERENCES Books(Book_id),
-    Order_Date date,
-    Quantity int,
-    Total_Amount numeric(10,2)
-);
-# 2. Data Import from CSV
- To import data from CSV files, use the COPY command in PostgreSQL.
+
+
+
+## 2. Data Import from CSV 
+The COPY command is often used to import data from CSV files into database tables. This is particularly useful when you need to load large datasets quickly into your database. 
  
 
 
-# 3. Simple Queries for Data Analysis
+## 3. Simple Queries for Data Analysis
 -  Retrieve all books in the "Fiction" genre:
 -  Find books published after the year 1950:
 -  List all customers from the Canada:
