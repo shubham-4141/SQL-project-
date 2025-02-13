@@ -58,7 +58,7 @@ CREATE TABLE Orders (
     Total_Amount numeric(10,2)
 );
 # 2. Data Import from CSV
-To import data from CSV files, use the COPY command in PostgreSQL.
+ To import data from CSV files, use the COPY command in PostgreSQL.
 
 sql
 Copy
@@ -66,88 +66,28 @@ COPY Books(Book_id, Title, Author, Genere, Published_Year, Price, Stock)
 FROM 'C:\Sqlproject\Books.csv' 
 DELIMITER ',' CSV HEADER;
 
-COPY Customers(Customer_id, Name, Email, Phone, City, Country)
-FROM 'C:\Sqlproject\Customers.csv' 
-DELIMITER ',' CSV HEADER;
+-- COPY Customers(Customer_id, Name, Email, Phone, City, Country)
+   FROM 'C:\Sqlproject\Customers.csv' 
+   DELIMITER ',' CSV HEADER;
 
 COPY Orders(Order_id, Customer_id, Book_id, Order_Date, Quantity, Total_Amount)
 FROM 'C:\Sqlproject\Orders.csv' 
 DELIMITER ',' CSV HEADER;
-# 3. Sample Queries for Data Analysis
+# 3. Simple Queries for Data Analysis
 - Retrieve all books in the "Fiction" genre:
 
-sql
-Copy
-SELECT * FROM Books WHERE genere = 'Fiction';
-Find books published after 1950:
 
-sql
-Copy
-SELECT * FROM Books WHERE published_year > 1950;
-Retrieve the total stock of books available:
 
-sql
-Copy
-SELECT SUM(stock) AS total_stock FROM Books;
-Find the most expensive book:
+## 4. Advanced Queries
 
-sql
-Copy
-SELECT * FROM Books ORDER BY price DESC LIMIT 1;
-Show all customers who ordered more than 6 copies of a book:
+## Potential Enhancements
+1. Reports and Visualizations: Using tools like Power BI or Tableau, integrate the database with a reporting system for visual analysis of sales trends, customer behaviors, and book performance.
 
-sql
-Copy
-SELECT * FROM Orders WHERE quantity > 6;
-Retrieve total revenue from all orders:
+2. Additional Features:
 
-sql
-Copy
-SELECT SUM(total_amount) AS total_revenue FROM Orders;
-4. Advanced Queries
-Retrieve the total number of books sold for each genre:
-
-sql
-Copy
-SELECT b.genere, SUM(o.quantity) AS Total_booksold
-FROM Orders AS o
-JOIN Books AS b ON o.Book_id = b.Book_id
-GROUP BY b.genere;
-List customers who have placed at least 2 orders:
-
-sql
-Copy
-SELECT o.customer_id, c.name, COUNT(o.order_id) AS Order_count
-FROM Orders AS o
-JOIN Customers AS c ON o.customer_id = c.customer_id
-GROUP BY o.customer_id, c.name
-HAVING COUNT(o.order_id) >= 2;
-Find the most frequently ordered book (with name):
-
-sql
-Copy
-SELECT o.book_id, b.title, COUNT(o.order_id) AS most_frequentorder
-FROM Orders AS o
-JOIN Books AS b ON o.book_id = b.book_id
-GROUP BY o.book_id, b.title
-ORDER BY most_frequentorder DESC
-LIMIT 1;
-How to Use the Project
-Step 1: Set Up the Database
-Install PostgreSQL and set up a new database.
-Create the necessary tables using the provided SQL scripts.
-Import data from the provided CSV files into the tables.
-Step 2: Execute Queries
-You can run the provided queries directly in your PostgreSQL environment to get useful insights about the book store.
-
-Potential Enhancements
-Reports and Visualizations: Using tools like Power BI or Tableau, integrate the database with a reporting system for visual analysis of sales trends, customer behaviors, and book performance.
-
-Additional Features:
-
-Add more tables for inventory management, suppliers, or discounts.
-Implement more complex business logic for customer loyalty programs or promotional discounts.
-Conclusion
+- Add more tables for inventory management, suppliers, or discounts.
+- Implement more complex business logic for customer loyalty programs or promotional discounts.
+## Conclusion
 This project provides a solid foundation for managing a book store's data using SQL. The system allows for easy tracking of books, customers, and orders, while offering advanced queries to generate key business insights. It can be further expanded to include more features or integrated with business intelligence tools for more advanced reporting and visualization.
 
 
